@@ -136,10 +136,10 @@ class FeatureScreen extends React.Component {
                      />
                  </View>
                  <View style={{marginTop:10,marginBottom:20}}>
-                     <View style={{flexDirection:'row'}}>
+                     <View style={{flexDirection:'row',flexWrap:'wrap'}}>
                          {
                              this.state.featured.map((featured)=>
-                             <View key = {featured.id} value={featured.id} style={{backgroundColor:"#fff",width:'50%',padding:5,marginRight:3}}>
+                             <View key = {featured.id} value={featured.id} style={{backgroundColor:"#fff",width:'48%',marginRight:3,padding:5,marginTop:5}}>
                              {
                                 (featured.loved == undefined || featured.loved == false)  &&
                                <IonIcon onPress = {() => this.love(featured)} name="ios-heart-empty" size={20} color="#000" style={{position:'relative',textAlign:'right',marginRight:8}}></IonIcon>      

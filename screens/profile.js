@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, Text,TextInput,ScrollView,StyleSheet,Image, TouchableOpacity, ActivityIndicator} from 'react-native';
+import {View, Text,TextInput,ScrollView,StyleSheet,Image,Linking, TouchableOpacity, ActivityIndicator} from 'react-native';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import {connect} from 'react-redux';
 import Modal from 'react-native-modal';
@@ -66,13 +66,15 @@ class ProfileScreen extends React.Component {
            this.setState({
               email: Object.keys(this.props.data.userData).length > 0 ? this.props.data.userData.email : '',
               phone_number:Object.keys(this.props.data.userData).length > 0 ? this.props.data.userData.phone_number : '',
-              name:Object.keys(this.props.data.userData).length > 0 ? this.props.data.userData.name : ''
+              name:Object.keys(this.props.data.userData).length > 0 ? this.props.data.userData.name : '',
+              token:Object.keys(this.props.data.userData).length > 0 ? this.props.data.access_token : ''
            })
         }
            
     }
     select = (val) =>{
-       this.setState({select:val})
+      if(val == this.state.select) this.setState({select:''});
+      else this.setState({select:val});
     }
     closemodal = () =>{
        this.setState({modalVisible:!this.state.modalVisible});
@@ -191,24 +193,14 @@ class ProfileScreen extends React.Component {
                         </View>
                      }
                    
-                   <View style={{flexDirection:'row'}}>
-                        <View style={{width:'10%',marginTop:30}}>
-                           <IonIcon name="md-settings" size={20} color="#000000"></IonIcon>
-                        </View>
-                        <View style={{flexDirection:'row', width:'90%',marginTop:30,borderBottomColor:'#c1c1c1',borderBottomWidth:1,paddingBottom:4}}>
-                        
-                        <Text style={{fontFamily:'Montserrat-Bold',fontSize:12,width:'90%'}}>Settings</Text>
-                        <IonIcon name="ios-arrow-forward" size={20} color="#000000" style={{width:'5%'}}></IonIcon>
-
-                        </View>
-                   </View>
+                   
                    <View style={{flexDirection:'row'}}>
                         <View style={{width:'10%',marginTop:30}}>
                            <IonIcon name="md-document" size={20} color="#000000"></IonIcon>
                         </View>
                         <View style={{flexDirection:'row', width:'90%',marginTop:30,borderBottomColor:'#c1c1c1',borderBottomWidth:1,paddingBottom:4}}>
                         
-                        <Text style={{fontFamily:'Montserrat-Bold',fontSize:12,width:'90%'}}>Terms and Conditions</Text>
+                        <Text onPress = {() => this.props.navigation.navigate('terms')} style={{fontFamily:'Montserrat-Bold',fontSize:12,width:'90%'}}>Terms and Conditions</Text>
                         <IonIcon name="ios-arrow-forward" size={20} color="#000000" style={{width:'5%'}}></IonIcon>
 
                         </View>
@@ -233,18 +225,7 @@ class ProfileScreen extends React.Component {
                    {
                       this.state.select == 'support' && 
                       <View> 
-                        <View style={{flexDirection:'row',marginTop:-10}}>
-                              <View style={{width:'10%',marginTop:0}}>
-                                 
-                              </View>
-                              <View style={{flexDirection:'row', width:'90%',marginTop:30,paddingBottom:4}}>
-                              <Image
-                                          source={require('../assets/images/email.png')}
-                                          style={{width:20,aspectRatio:1.3,alignSelf:'center',width:'10%',margin:5}}
-                                 />
-                                 <Text style={{fontFamily:'Montserrat-Bold',fontSize:12,color:'#000',width:'80%',marginTop:10,marginStart:10}}>ogunrindeomotayo@gmail.com</Text>
-                              </View>
-                        </View>
+                        
                         <View style={{flexDirection:'row',marginTop:-10}}>
                               <View style={{width:'10%',marginTop:0}}>
                                  
@@ -254,7 +235,7 @@ class ProfileScreen extends React.Component {
                                           source={require('../assets/images/smartphone.png')}
                                           style={{width:20,aspectRatio:0.9,alignSelf:'center',width:'10%',margin:5}}
                                  />
-                                 <Text style={{fontFamily:'Montserrat-Bold',fontSize:12,color:'#000',width:'80%',marginTop:10,marginStart:10}}>00000000000000</Text>
+                                 <Text style={{fontFamily:'Montserrat-Bold',fontSize:12,color:'#000',width:'80%',marginTop:10,marginStart:10}}>08101007614, 09087466704</Text>
                               </View>
                         </View>
                     </View>
@@ -295,18 +276,24 @@ class ProfileScreen extends React.Component {
                                  
                               </View>
                               <View style={{flexDirection:'row', width:'90%',marginTop:30,paddingBottom:4}}>
+                              <TouchableOpacity onPress = {() => Linking.openURL('https://www.twitter.com/thelittlebigkidcompany/')}>   
                               <Image
                                           source={require('../assets/images/twitter.png')}
                                           style={{width:40,aspectRatio:1.3,borderRadius:10,alignSelf:'center',width:'20%',marginRight:'10%'}}
-                                 />
+                              />
+                              </TouchableOpacity>
+                              <TouchableOpacity onPress = {() => Linking.openURL('https://www.facebook.com/thelittlebigkidcompany/')}>
                                  <Image
                                           source={require('../assets/images/facebook.png')}
                                           style={{width:40,aspectRatio:1.3,borderRadius:10,alignSelf:'center',width:'20%',marginRight:'10%'}}
                                  />
-                                 <Image
-                                          source={require('../assets/images/instagram.png')}
-                                          style={{width:40,aspectRatio:1.3,borderRadius:10,alignSelf:'center',width:'20%',margin:5}}
-                                 />
+                              </TouchableOpacity>   
+                              <TouchableOpacity onPress = {() => Linking.openURL('https://www.instagram.com/thelittlebigkidcompany/')}>
+                              <Image
+                                       source={require('../assets/images/instagram.png')}
+                                       style={{width:40,aspectRatio:1.3,borderRadius:10,alignSelf:'center',width:'20%',margin:5}}
+                              />
+                              </TouchableOpacity>
                               </View>
                      
                         </View>

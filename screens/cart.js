@@ -68,6 +68,10 @@ class CartScreen extends React.Component {
     plus = cart => {
         let carts = this.props.data.carts;
         let index = carts.findIndex(x => x.id === cart.id);
+        if(parseInt(carts.quantityininventory) < parseInt(carts[index].quantity)+1){
+            this.setState({gifts:!this.state.gifts,msg : `There are only ${carts.quantityininventory} quantity left in inventory`});
+            return false;
+        }
         carts[index].quantity = parseInt(carts[index].quantity) + 1;
         if(carts[index].deal == '1') carts[index].newprice = parseFloat(carts[index].newprice) + parseFloat(carts[index].cost);
         else carts[index].price = parseFloat(carts[index].price) + parseFloat(carts[index].cost);

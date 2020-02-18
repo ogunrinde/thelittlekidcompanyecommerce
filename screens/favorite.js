@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View, Image, StyleSheet, ScrollView,TouchableOpacity, TextInput} from 'react-native';
+import {Text, View, Image, StyleSheet, ScrollView,TouchableOpacity,ActivityIndicator, TextInput} from 'react-native';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import Modal from 'react-native-modal';
 import {whichpage} from '../action/fetch';
@@ -37,13 +37,30 @@ class FavoriteScreen extends React.Component {
         }
         
     }
+    favorite = async ()=>{
+        this.setState({isFetching:true});
+        await fetch(`${this.props.data.siteurl}/api/auth/getfavorite`, {
+        method:'GET',
+        headers:{
+            'Accept': 'application/json',
+            'Content-Type':'application/json',
+            'Authorization': `Bearer ${this.props.data.access_token}`
+        },
+            }).then(data => data.json()).then(data => {
+                this.setState({isFetching:false}); 
+                //console.error(data.favorites);
+                this.setState({favorites:data.favorites,searchfavorites:data.favorites});
+                
+            }).catch(err => {
+            });
+    }
     componentDidMount(){
         if(Object.keys(this.props.data.userData).length == 0){
             this.setState({login:true});
             return false;
         }
-        //console.error(this.props.data.favorites);
-        this.setState({favorites:this.props.data.favorites,searchfavorites:this.props.data.favorites});
+        this.favorite();
+        //this.setState({favorites:this.props.data.favorites,searchfavorites:this.props.data.favorites});
     }
     loginUser = async () => {
         let data = {page:'favorite'};
@@ -88,9 +105,16 @@ class FavoriteScreen extends React.Component {
                      />
                  </View>
                  <View style={{marginTop:10,marginBottom:20}}>
+                     {
+                         this.state.isFetching == true &&
+                         <View style={{marginTop:'45%'}}>
+                            <ActivityIndicator size="large" color ="ec5198"/>
+                         </View>
+                     }
+                     
                      <View style={{flexDirection:'row'}}>
                          {
-                             this.props.data.favorites.map((favorite) =>
+                             this.state.favorites.map((favorite) =>
                                 <View key = {favorite.id} value ={favorite.id} style={{backgroundColor:"#fff",width:'50%',padding:5,marginRight:3}}>
                                 <IonIcon name="ios-heart" size={20} color="#EC5198" style={{position:'relative',textAlign:'right',marginRight:8}}></IonIcon>      
                                 <TouchableOpacity onPress = {() =>this.productdetails(favorite)}>
@@ -109,7 +133,7 @@ class FavoriteScreen extends React.Component {
                          
                      </View>
                      {
-                   this.props.data.favorites.length == 0 && 
+                   this.state.favorites.length == 0 && this.state.isFetching == false &&
                    <View style={{backgroundColor:'#fff',padding:10,marginTop:5}}>
                         <Text style={{color:'#666666',fontSize:14,fontFamily:'Montserrat-Regular'}}>No Item in Favorite item yet..</Text>
                    </View>

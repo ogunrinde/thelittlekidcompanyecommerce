@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {View, Image,BackHandler,Platform, Text, TextInput, ScrollView,StyleSheet,TouchableOpacity, ActivityIndicator} from "react-native";
+import {View,Alert, Image,BackHandler,Platform, Text, TextInput, ScrollView,StyleSheet,TouchableOpacity, ActivityIndicator} from "react-native";
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import Modal from 'react-native-modal';
 import RNPaystack from 'react-native-paystack';
@@ -15,11 +15,12 @@ class CardDetails extends React.Component {
        super(props);
        this.state = {
            modalVisible:false,
-           cardNumber:'4123450131001381',
-           expiryMonth:'10',
-           expiryYear:'20',
-           cvc:'883',
-           isFetching:false
+           cardNumber:'',
+           expiryMonth:'',
+           expiryYear:'',
+           cvc:'',
+           isFetching:false,
+           exit:false
        }
     }
     handleAndroidBackButton = () => {
@@ -28,14 +29,16 @@ class CardDetails extends React.Component {
         });
       };
     componentDidMount(){
-        if(Platform.OS === 'android') this.handleAndroidBackButton();
-        //console.error(this.props.data.access_code);
+        if(Platform.OS === 'android') {
+            BackHandler.addEventListener('hardwareBackPress', () => {
+                this.setState({exit:!this.state.exit});
+                return true;
+              });
+        }
     }
+    
     componentWillUnmount(){
-        BackHandler.removeEventListener('hardwareBackPress', () => {
-            if(this.props.data.carts.length == 0) 
-               this.props.navigation.navigate('home');
-        });
+        BackHandler.removeEventListener('hardwareBackPress', () => {});
      } 
     action = async () =>{
         let data = {page:'home'};
@@ -87,6 +90,7 @@ class CardDetails extends React.Component {
           })
           .then((response) => {
               //console.error(this.props.data.orderid);
+              this.setState({isFetching:false});
             this.verify(response.reference,this.props.data.orderid.orders_id);
             
             //console.error(response); 
@@ -128,42 +132,67 @@ class CardDetails extends React.Component {
                         </View>
                     </View>
                     </Modal>
+                    <Modal isVisible={this.state.exit}>
+                    <View style={{backgroundColor:'#fff',width:'98%',height:340,marginRight:0,alignSelf:'center' }}>
+                        <Image
+                                source={require('../assets/images/info.png')}
+                                style={{width:80,height:80, alignSelf:'center',marginTop:40,marginBottom:15}}
+                                />
+                        <Text style={{color:'#000',fontSize:15,fontFamily:'Montserrat-Bold',textAlign:'center'}}>Alert</Text> 
+                        <Text style={{color:'#000',fontSize:15,fontFamily:'Montserrat-Regular',textAlign:'center',marginTop:20}}>Are you still interested in Purchasing these items ?</Text>
+
+                        <View style={{flexDirection:'row',padding:10,alignSelf:'center',marginTop:15}}>
+                            <TouchableOpacity>
+                                <Text onPress = {() => this.props.navigation.navigate('home')} style={{color:'#ec5198',fontSize:13,borderWidth:2,borderRadius:5,borderColor:'#ec5198',padding:12,marginRight:5,fontFamily:'Montserrat-Bold'}}>No</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity>
+                                <Text onPress = {() => this.setState({exit:!this.state.exit})} style={{color:'#fff',fontSize:13,borderWidth:1,borderRadius:5,borderColor:'#ec5198',padding:12,marginRight:5,backgroundColor:'#ec5198',fontFamily:'Montserrat-Bold'}}>Yes</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                    </Modal>
                         
                         <Image
                                     source={require('../assets/images/business.png')}
                                     style={{width:'100%',aspectRatio:1,alignSelf:'center',marginTop:20}}
                             />
 
-                        <View style={{padding:20}}>
+<View style={{padding:20}}>
                            <Text style={{fontSize:10,fontFamily:'Montserrat-Regular',marginTop:10}}>
                                Card Number
                            </Text>
-                           <TextInput placeholder='0000 0000 0000 0000' style={{marginTop:10,borderRadius:3,borderColor:'#c1c1c1',borderWidth:1,color:'#3f3f3f',paddingStart:10}}/>
+                           <TextInput keyboardType={'numeric'} value = {this.state.cardNumber} onChangeText = {(text)=>this.setState({cardNumber:text})} placeholder='0000 0000 0000 0000' style={{marginTop:10,borderRadius:3,borderColor:'#c1c1c1',borderWidth:1,color:'#3f3f3f',paddingStart:10}}/>
                            <View style={{flexDirection:'row',marginTop:10}}>
-                               <View style={{width:'50%'}}>
+                               <View style={{width:'33.33%'}}>
                                 <Text style={{fontSize:10,fontFamily:'Montserrat-Regular',marginTop:10}}>
-                                Expiry Date
+                                Expiry Month
                                 </Text>  
-                                 <TextInput placeholder='MM/YY' style={{width:'90%', marginTop:10,borderRadius:3,borderColor:'#c1c1c1',borderWidth:1,color:'#3f3f3f',paddingStart:10}}/>
+                                 <TextInput keyboardType={'numeric'} value = {this.state.expiryMonth} onChangeText = {(text)=>this.setState({expiryMonth:text})} placeholder='Month' style={{width:'90%', marginTop:10,borderRadius:3,borderColor:'#c1c1c1',borderWidth:1,color:'#3f3f3f',paddingStart:10}}/>
                                </View>
-                               <View style={{width:'50%'}}> 
+                               <View style={{width:'33.33%'}}>
+                                <Text style={{fontSize:10,fontFamily:'Montserrat-Regular',marginTop:10}}>
+                                Expiry Year
+                                </Text>  
+                                 <TextInput keyboardType={'numeric'} value = {this.state.expiryYear} onChangeText = {(text)=>this.setState({expiryYear:text})} placeholder='Year' style={{width:'90%', marginTop:10,borderRadius:3,borderColor:'#c1c1c1',borderWidth:1,color:'#3f3f3f',paddingStart:10}}/>
+                               </View>
+                               <View style={{width:'33.33%'}}> 
                                <Text style={{fontSize:10,fontFamily:'Montserrat-Regular',marginTop:10}}>
-                                CVC
+                                CVV
                                 </Text>
-                                 <TextInput placeholder='CVV' style={{width:'100%', marginTop:10,borderRadius:3,borderColor:'#c1c1c1',borderWidth:1,color:'#3f3f3f',paddingStart:10}}/>
+                                 <TextInput keyboardType={'numeric'} value = {this.state.cvc} onChangeText = {(text)=>this.setState({cvc:text})} placeholder='CVV' style={{width:'100%', marginTop:10,borderRadius:3,borderColor:'#c1c1c1',borderWidth:1,color:'#3f3f3f',paddingStart:10}}/>
                                </View>
                                
                            </View>
                            {
                                this.state.isFetching == true &&
-                               <TouchableOpacity style={{backgroundColor:'#ec5198',padding:10,marginTop:10,width:'100%',alignSelf:'center',borderRadius:2}}>
+                               <TouchableOpacity style={{backgroundColor:'#BA1717',padding:10,marginTop:10,width:'100%',alignSelf:'center',borderRadius:2}}>
 
                                <ActivityIndicator  size='small' color='#fff'/>
                                </TouchableOpacity>
                            }
                            {
                                this.state.isFetching == false &&
-                               <TouchableOpacity onPress ={this.paynow} style={{backgroundColor:'#ec5198',padding:10,marginTop:10,width:'100%',alignSelf:'center',borderRadius:2}}>
+                               <TouchableOpacity onPress ={this.paynow} style={{backgroundColor:'#BA1717',padding:10,marginTop:10,width:'100%',alignSelf:'center',borderRadius:2}}>
                                            <Text style={{color:'#fff',alignSelf:'center',fontFamily:'Montserrat-Bold',fontSize:14}}>Proceed</Text>
                                 </TouchableOpacity>
                            }

@@ -101,6 +101,37 @@ class ShippingScreen extends React.Component {
                 >
                 <Picker.Item label="State" value =""  />
                 <Picker.Item label="Lagos" value="Lagos" />
+                <Picker.Item label="Abuja FCT" value="Abuja FCT" />
+                <Picker.Item label="Abia" value="Abia" />
+                <Picker.Item label="Adamawa" value="Adamawa" />
+                <Picker.Item label="Anambra" value="Anambra" />
+                <Picker.Item label="Bauchi" value="Bauchi" />
+                <Picker.Item label="Bayelsa" value="Bayelsa" />
+                <Picker.Item label="Benue" value="Benue" />
+                <Picker.Item label="Borno" value="Borno" />
+                <Picker.Item label="Cross River" value="Cross River" />
+                <Picker.Item label="Delta" value="Delta" />
+                <Picker.Item label="Edo" value="Edo" />
+                <Picker.Item label="Enugu" value="Enugu" />
+                <Picker.Item label="Gombe" value="Gombe" />
+                <Picker.Item label="Imo" value="Imo" />
+                <Picker.Item label="Jigawa" value="Jigawa" />
+                <Picker.Item label="Kaduna" value="Kaduna" />
+                <Picker.Item label="Kano" value="Kano" />
+                <Picker.Item label="Katsina" value="Katsina" />
+                <Picker.Item label="Kogi" value="Kogi" />
+                <Picker.Item label="Kwara" value="Kwara" />
+                <Picker.Item label="Nassarawa" value="Nassarawa" />
+                <Picker.Item label="Ogun" value="Ogun" />
+                <Picker.Item label="Ondo" value="Ondo" />
+                <Picker.Item label="Osun" value="Osun" />
+                <Picker.Item label="Oyo" value="Oyo" />
+                <Picker.Item label="Plateau" value="Plateau" />
+                <Picker.Item label="Rivers" value="Rivers" />
+                <Picker.Item label="Sokoto" value="Sokoto" />
+                <Picker.Item label="Taraba" value="Taraba" />
+                <Picker.Item label="Yobe" value="Yobe" />
+                <Picker.Item label="Zamfara" value="Zamfara" />
                 </Picker>
                 <Text style={{borderBottomWidth:1, position:'relative',top:-15,color:'#4f4f4f',fontSize:15,fontWeight:'normal',borderBottomColor:'#C1c1c1'}}></Text>
                 <Picker

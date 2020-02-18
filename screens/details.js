@@ -85,6 +85,7 @@ class DetailsScreen extends React.Component {
             deal:this.props.data.productdetails.deal,
             cost:cost,
             quantity:1,
+            quantityininventory:this.props.data.productdetails.unit_left,
             id:this.props.data.productdetails.id,
             description:this.props.data.productdetails.description,
             image:this.props.data.productdetails.picture,
@@ -118,7 +119,8 @@ class DetailsScreen extends React.Component {
                     deals:this.props.data.deals,
                     featured:this.props.data.featured,
                     suggested:this.props.data.suggested,
-                    article:this.props.data.article
+                    article:this.props.data.article,
+                    arrival:this.props.data.arrival,
                   };
                   this.props.dispatch(products(stock));
                 //this.setState({featured:allfeatured,searchfeatured : allfeatured});

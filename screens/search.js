@@ -27,7 +27,8 @@ class SearchScreen extends React.Component {
    }
    componentDidMount(){
     this.setState({products:this.props.data.products,searchproducts:this.props.data.products});
-    }
+    //console.error(this.props.data.products);    
+}
     getText = (val) => {
     let search = [];
     for(let f  = 0; f < this.props.data.products.length; f++){
@@ -103,17 +104,14 @@ class SearchScreen extends React.Component {
         return (
            <ScrollView showsVerticalScrollIndicator = {false} style={styles.container}>
                  <View style={{flex:1,alignSelf:'center'}}>
+                     
                      {
-                         this.props.data.searchdata.sex != '' && this.props.data.searchdata.age != '' &&
-                         <Text style={{marginTop:20,fontFamily:'Montserrat-Regular',textAlign:'center',fontSize:15}}>Based on your answers, here's our suggections</Text>
+                         this.props.data.searchdata.category != '' && this.props.data.searchdata.age == '' &&
+                         <Text style={{marginTop:20,fontFamily:'Montserrat-Regular',textAlign:'center',fontSize:20,textTransform:'capitalize'}}>{this.props.data.searchdata.category}</Text>
                      }
                      {
-                         this.props.data.searchdata.sex == '' && this.props.data.searchdata.age != '' &&
-                         <Text style={{marginTop:20,fontFamily:'Montserrat-Bold',textAlign:'center',fontSize:17}}>{this.props.data.searchdata.age}</Text>
-                     }
-                     {
-                         this.props.data.searchdata.age == '' && this.props.data.searchdata.sex != '' &&
-                         <Text style={{marginTop:20,fontFamily:'Montserrat-Bold',textAlign:'center',fontSize:17}}>{this.props.data.searchdata.sex}</Text>
+                         this.props.data.searchdata.category == '' && this.props.data.searchdata.age != '' &&
+                         <Text style={{marginTop:20,fontFamily:'Montserrat-Bold',textAlign:'center',fontSize:20}}>{this.props.data.searchdata.age}</Text>
                      }
                  </View>
                  <Modal isVisible={this.state.login}>
@@ -134,8 +132,9 @@ class SearchScreen extends React.Component {
                         </View>
                     </View>
                 </Modal>
-                 <View style={{flexDirection:'row',padding:10,paddingLeft:0}}>
+                 <View style={{flexDirection:'row',padding:10,paddingLeft:0,marginTop:0}}>
                  <IonIcon onPress={() => this.props.navigation.navigate('home')} name="ios-arrow-back" size={26} color="#000" style={{width:'6%',marginTop:10}}></IonIcon>
+                 
                  <TextInput 
                       onChangeText = {(text)=> this.getText(text)}
                       placeholder="Search for Product"
@@ -148,7 +147,7 @@ class SearchScreen extends React.Component {
                      <View style={{flexDirection:'row',flexWrap:'wrap'}}>
                          {
                              this.state.products.map((product) =>
-                             (this.props.data.searchdata.age == product.category || this.props.data.searchdata.sex == product.gender) &&
+                             (this.props.data.searchdata.age == product.age || (product.category != null && this.props.data.searchdata.category.toLowerCase() === product.category.toLowerCase())) &&
                              <View style={{backgroundColor:"#fff",width:'48%',padding:5,marginRight:3,marginTop:5}} key = {product.id} value = {product.id}>
                             {
                                 (product.loved == undefined || product.loved == false) &&

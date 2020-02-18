@@ -24,6 +24,7 @@ const initial_state = {
     reference:'',
     access_code:'',
     total_price:0,
+    arrival:[],
     siteurl:'http://www.thelittlebigkidcompany.com.ng'
 };
 
@@ -48,6 +49,12 @@ const Reducer = (state = initial_state, action) => {
               access_token:action.data.access_token
 
         });
+        case 'UPDATELOGIN':
+            return Object.assign({}, state, {
+               userData:action.data.user,
+               access_token:action.data.access_token
+
+         });
         case 'ORDERID':
            return Object.assign({}, state, {
               orderid:action.data,
@@ -92,12 +99,13 @@ const Reducer = (state = initial_state, action) => {
         case 'PRODUCTS':
            return Object.assign({}, state, {
               isFetching:false,
-              products:action.data.products,
+              products:action.data.products == undefined ? state.products : action.data.products,
               deals:action.data.deals,
               featured:action.data.featured,
               article:action.data.article,
               suggested:action.data.suggested,
-              favorites:action.data.favorites == undefined ? [] : action.data.favorites
+              arrival:action.data.arrival == undefined ? state.arrival : action.data.arrival,
+              favorites:action.data.favorites == undefined ? state.favorites : action.data.favorites
         });   
         case 'SEARCHBY':
            return Object.assign({}, state, {

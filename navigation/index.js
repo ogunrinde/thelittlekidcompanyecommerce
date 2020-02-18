@@ -32,13 +32,6 @@ const Tab = createBottomTabNavigator({
         title:'Favorite'
       }
     },
-    category:{
-      screen:CategoryScreen,
-      navigationOptions: {
-        header:null,
-        title:'Category'
-      }
-    },
     profile:{
       screen:ProfileScreen,
       navigationOptions: {
@@ -61,9 +54,7 @@ const Tab = createBottomTabNavigator({
           iconName = `md-cart`; 
         } else if (routeName === 'favorite') {
           iconName = `md-heart-empty`;
-        }else if (routeName === 'category') {
-          iconName = `md-menu`;
-        } 
+        }
         else if (routeName === 'profile') {
           iconName = `md-person`;
         } 

@@ -19,6 +19,8 @@ import DealScreen from '../screens/deals';
 import FeatureScreen from '../screens/featured';
 import OrdersScreen from '../screens/orders';
 import ViewsScreen from '../screens/view_orders';
+import ArrivalScreen from '../screens/arrival';
+import TermsScreen from '../screens/terms';
 
 const Onboard = createStackNavigator({
     onboardone:{
@@ -60,8 +62,20 @@ const Payment = createStackNavigator({
 });
 
 const Stack = createStackNavigator({
-    welcome:{
-        screen:WelcomeScreen,
+    tab:{
+        screen:Tab,
+        navigationOptions: {
+            header:null
+        }
+    },
+    terms:{
+        screen:TermsScreen,
+        navigationOptions:{
+            header:null
+        }
+    },
+    arrival:{
+        screen:ArrivalScreen,
         navigationOptions:{
             header:null
         }

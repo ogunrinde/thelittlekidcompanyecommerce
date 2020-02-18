@@ -10,7 +10,12 @@ export const login = (data) => {
         data:data
     }
 };
-
+export const updatelogin = (data) => {
+    return {
+        type: 'UPDATELOGIN',
+        data:data
+    }
+};
 export const fetchdata = () => {
     return {
         type: 'GETDATA'

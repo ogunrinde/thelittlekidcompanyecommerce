@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View,BackHandler,Platform, Text,StyleSheet,TextInput,Picker,TouchableOpacity,Image} from 'react-native';
+import {View,SafeAreaView,BackHandler,Platform, Text,StyleSheet,TextInput,Picker,TouchableOpacity,Image} from 'react-native';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {  } from 'react-native-gesture-handler';
@@ -60,6 +60,7 @@ class ShippingScreen extends React.Component {
     }
     render(){
         return(
+           <SafeAreaView>
            <View style={styles.container}>
                <View style={{flexDirection:'row',marginTop:30}}>
                <IonIcon onPress={() => this.props.navigation.goBack()} name="ios-arrow-back" size={26} color="#000000" style={{width:'10%',textAlign:'center'}}></IonIcon>
@@ -163,6 +164,7 @@ class ShippingScreen extends React.Component {
                 </TouchableOpacity>           
                </View>
            </View>
+           </SafeAreaView> 
         );
     }
 

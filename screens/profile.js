@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, Text,TextInput,ScrollView,StyleSheet,Image,Linking, TouchableOpacity, ActivityIndicator} from 'react-native';
+import {View, Text,SafeAreaView, TextInput,ScrollView,StyleSheet,Image,Linking, TouchableOpacity, ActivityIndicator} from 'react-native';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import {connect} from 'react-redux';
 import Modal from 'react-native-modal';
@@ -86,6 +86,7 @@ class ProfileScreen extends React.Component {
     render(){
         return(
            <ScrollView showsVerticalScrollIndicator = {false} style= {styles.container}>
+               <SafeAreaView>
                <View style={{flexDirection:'row',padding:10,backgroundColor:'#fff',borderBottomEndRadius:20,borderBottomStartRadius:20}}>
                    <View style={{width:'25%'}}>
                    <Image
@@ -313,6 +314,7 @@ class ProfileScreen extends React.Component {
                    </View>
                     
                </View>
+               </SafeAreaView> 
            </ScrollView>
         );
     }

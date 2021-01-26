@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, SafeAreaView, Text, StyleSheet} from 'react-native';
 import { TextInput, TouchableOpacity, ScrollView,Image,ActivityIndicator } from 'react-native';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -88,6 +88,7 @@ class RegisterScreen extends React.Component {
     render(){
         return(
            <ScrollView>
+           <SafeAreaView>
            <View style={styles.container}>
                <View>
                    <Text style={styles.header}>
@@ -169,6 +170,7 @@ class RegisterScreen extends React.Component {
                </View>
                
            </View>
+           </SafeAreaView>    
            </ScrollView> 
         );
     }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, Text, StyleSheet, ScrollView,Image,Dimensions, TouchableOpacity} from 'react-native';
+import {View, Text, SafeAreaView, StyleSheet, ScrollView,Image,Dimensions, TouchableOpacity} from 'react-native';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import Octicons from 'react-native-vector-icons/Octicons';
 import Carousel from 'react-native-carousel';
@@ -149,9 +149,11 @@ class DetailsScreen extends React.Component {
     }
     render (){
         return(
+            <SafeAreaView>
             <View style = {styles.container}>
               <View style={{flex:6}}>
               <ScrollView showsVerticalScrollIndicator = {false}>  
+              
                 <View>
                     <View>
                       <IonIcon onPress = {() => this.props.navigation.goBack()} name="ios-arrow-back" size={20} color="#000000" style={{width:'5%'}}></IonIcon>
@@ -302,6 +304,7 @@ class DetailsScreen extends React.Component {
                    
               </View>
            </View>
+           </SafeAreaView>
         );
     }
 

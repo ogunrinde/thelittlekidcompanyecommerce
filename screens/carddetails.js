@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {View,Alert, Image,BackHandler,Platform, Text, TextInput, ScrollView,StyleSheet,TouchableOpacity, ActivityIndicator} from "react-native";
+import {View,Alert,SafeAreaView, Image,BackHandler,Platform, Text, TextInput, ScrollView,StyleSheet,TouchableOpacity, ActivityIndicator} from "react-native";
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import Modal from 'react-native-modal';
 import RNPaystack from 'react-native-paystack';
@@ -105,6 +105,7 @@ class CardDetails extends React.Component {
     render(){
         return(
             <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
+                <SafeAreaView>
                 <View>
                     <View style={{marginTop:15}}>
                     <View style={{flexDirection:'row',padding:10,paddingLeft:0}}>
@@ -200,6 +201,7 @@ class CardDetails extends React.Component {
                         </View>    
                     </View>
                 </View>
+                </SafeAreaView> 
             </ScrollView>
         );
     }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, Text, ScrollView,StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text,SafeAreaView, ScrollView,StyleSheet, TouchableOpacity} from 'react-native';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 
 class FilterScreen extends React.Component {
@@ -12,6 +12,7 @@ class FilterScreen extends React.Component {
     render(){
         return(
             <ScrollView showsVerticalScrollIndicator = {false} style={styles.container}>
+                <SafeAreaView>
                 <View>
                    <View style={{flexDirection:'row', marginTop:32}}>
                         <Text style={{fontFamily:'Montserrat-Bold',width:'85%',fontSize:20}}>Filter</Text>
@@ -65,6 +66,7 @@ class FilterScreen extends React.Component {
                          <Text style={{fontSize:13,fontFamily:'Montserrat-SemiBold', color:'#000',alignSelf:'center',fontSize:15,color:'#fff'}}>Apply</Text>
                      </TouchableOpacity>
                 </View>
+                </SafeAreaView> 
             </ScrollView>
         );
     }

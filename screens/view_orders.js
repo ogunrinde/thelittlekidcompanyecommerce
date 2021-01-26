@@ -1,6 +1,6 @@
 import React, {Component } from 'react';
 import {Card} from 'react-native-elements';
-import {View, ScrollView,Image, StyleSheet, Text,TouchableOpacity} from 'react-native';
+import {View,SafeAreaView, ScrollView,Image, StyleSheet, Text,TouchableOpacity} from 'react-native';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import { connect} from 'react-redux';
 import currencyFormatter from 'currency-formatter';
@@ -41,7 +41,7 @@ class ViewsScreen extends React.Component {
     render(){
         return (
             <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
-              
+              <SafeAreaView>
               <View>
                 <View style={{flexDirection:'row',marginTop:30}}>
                 <IonIcon onPress={() => this.props.navigation.goBack()} name="ios-arrow-back" size={26} color="#000000" style={{width:'10%',textAlign:'center'}}></IonIcon>
@@ -125,7 +125,7 @@ class ViewsScreen extends React.Component {
                 </View>
           
               </View>
- 
+              </SafeAreaView>
             </ScrollView>
         );
     }

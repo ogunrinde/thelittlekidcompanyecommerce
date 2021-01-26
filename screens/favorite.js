@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View, Image, StyleSheet, ScrollView,TouchableOpacity,ActivityIndicator, TextInput} from 'react-native';
+import {Text, View, Image, SafeAreaView, StyleSheet, ScrollView,TouchableOpacity,ActivityIndicator, TextInput} from 'react-native';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import Modal from 'react-native-modal';
 import {whichpage} from '../action/fetch';
@@ -76,6 +76,7 @@ class FavoriteScreen extends React.Component {
     render(){
         return (
            <ScrollView showsVerticalScrollIndicator = {false} style={styles.container}>
+                <SafeAreaView>
                  <View style={{flex:1,alignSelf:'center'}}>
                      <Text style={{marginTop:20,fontFamily:'Montserrat-Bold',fontSize:15}}>Favorites</Text>
                  </View>
@@ -101,7 +102,7 @@ class FavoriteScreen extends React.Component {
                  <TextInput 
                       onChangeText = {(text)=> this.getText(text)}
                       placeholder="Search for category"
-                      style = {{backgroundColor:'#e2e2e2',borderRadius:60,paddingStart:10,width:'100%',marginStart:5,marginEnd:5,padding:7}}
+                      style = {{backgroundColor:'#e2e2e2',borderRadius:60,padding:20,paddingStart:10,width:'100%',marginStart:5,marginEnd:5}}
                      />
                  </View>
                  <View style={{marginTop:10,marginBottom:20}}>
@@ -140,6 +141,7 @@ class FavoriteScreen extends React.Component {
                } 
                      
                  </View>
+                 </SafeAreaView>  
            </ScrollView>
         );
     }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, Text,ScrollView,StyleSheet,Image,TouchableOpacity,TextInput} from 'react-native';
+import {View, Text,ScrollView, SafeAreaView,StyleSheet,Image,TouchableOpacity,TextInput} from 'react-native';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { connect  } from 'react-redux';
@@ -150,6 +150,7 @@ class CartScreen extends React.Component {
     render(){
         return(
            <ScrollView showsVerticalScrollIndicator = {false} style={styles.container}>
+               <SafeAreaView>
                <View>
                    <Text style={{marginTop:10,marginBottom:20, fontFamily:'Montserrat-Bold',fontSize:15,alignSelf:'center'}}>Cart</Text>
                </View>
@@ -342,6 +343,7 @@ class CartScreen extends React.Component {
                     </View>
                     
                </View>
+               </SafeAreaView>
            </ScrollView>
         );
     }

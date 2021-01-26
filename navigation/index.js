@@ -53,7 +53,7 @@ const Tab = createBottomTabNavigator({
         else if (routeName === 'cart') {
           iconName = `md-cart`; 
         } else if (routeName === 'favorite') {
-          iconName = `md-heart-empty`;
+          iconName = `heart-outline`;
         }
         else if (routeName === 'profile') {
           iconName = `md-person`;

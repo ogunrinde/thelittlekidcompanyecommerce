@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View,Dimensions, Text,ImageBackground, StyleSheet,ScrollView,Image,TouchableOpacity, TouchableHighlight, ActivityIndicator} from 'react-native';
+import {View,Dimensions, Text,ImageBackground,SafeAreaView, StyleSheet,ScrollView,Image,TouchableOpacity, TouchableHighlight, ActivityIndicator} from 'react-native';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import Octicons from 'react-native-vector-icons/Octicons';
 import Carousel from 'react-native-carousel';
@@ -190,6 +190,7 @@ class HomeScreen extends React.Component {
     render(){
         return(
             <ScrollView showsVerticalScrollIndicator = {false} style={styles.container}>
+                <SafeAreaView>
                 { this.props.data.products.length > 0 &&
                 <View>
                   <View style = {{padding:15}}>
@@ -637,7 +638,7 @@ class HomeScreen extends React.Component {
                         </View>
                     }
                     
-                
+            </SafeAreaView>    
             </ScrollView>
            
         );

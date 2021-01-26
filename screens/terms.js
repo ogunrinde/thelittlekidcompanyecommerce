@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import cart from './cart';
 import currencyFormatter from 'currency-formatter';
 import {details} from '../action/fetch';
+import SafeAreaView from 'react-native-safe-area-view';
 
 class TermsScreen extends React.Component {
     constructor(props){
@@ -31,6 +32,7 @@ class TermsScreen extends React.Component {
     render(){
         return (
             <ScrollView style={styles.container}>
+                <SafeAreaView>
                 <View>
                     <View style={{backgroundColor:'#BA1717',padding:15}}>
                          <View style={{flexDirection:'row',padding:10,marginBottom:20}}>
@@ -173,6 +175,7 @@ class TermsScreen extends React.Component {
                     
                     
                 </View>
+                </SafeAreaView>    
             </ScrollView>
         )
     }

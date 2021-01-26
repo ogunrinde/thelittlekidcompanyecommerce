@@ -6,6 +6,7 @@ import {details} from '../action/fetch';
 import currencyFormatter from 'currency-formatter';
 import {whichpage,products} from '../action/fetch';
 import Modal from 'react-native-modal';
+import SafeAreaView from 'react-native-safe-area-view';
 
 class ArrivalScreen extends React.Component {
     static navigationOPtions = {
@@ -103,6 +104,7 @@ class ArrivalScreen extends React.Component {
     render(){
         return (
            <ScrollView showsVerticalScrollIndicator = {false} style={styles.container}>
+                <SafeAreaView>
                  <View style={{flex:1,alignSelf:'center'}}>
                      {
                          this.props.data.searchdata.sex != '' && this.props.data.searchdata.age != '' &&
@@ -176,6 +178,7 @@ class ArrivalScreen extends React.Component {
                      </View>
                      
                  </View>
+                 </SafeAreaView> 
            </ScrollView>
         );
     }

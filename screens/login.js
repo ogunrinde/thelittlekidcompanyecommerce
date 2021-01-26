@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import {login} from '../action/fetch';
 import Modal from 'react-native-modal';
 import AsyncStorage from '@react-native-community/async-storage';
+import SafeAreaView from 'react-native-safe-area-view';
 
 
 class LoginScreen extends React.Component {
@@ -74,6 +75,7 @@ class LoginScreen extends React.Component {
 
     render(){
         return(
+            <SafeAreaView>
            <View style={styles.container}>
                <View>
                    <Text style={styles.header}>
@@ -150,6 +152,7 @@ class LoginScreen extends React.Component {
                </View>
            
            </View>
+           </SafeAreaView>
         );
     }
 
@@ -161,7 +164,7 @@ const styles = StyleSheet.create({
        padding:15
    },
    text:{
-    backgroundColor:'#F9F9F9',color:'#666666',fontSize:15,fontWeight:'bold',paddingStart:20,borderRadius:20,marginBottom:10
+    backgroundColor:'#F9F9F9',padding:25,color:'#666666',fontSize:15,fontWeight:'bold',paddingStart:20,borderRadius:20,marginBottom:10
    },
    header:{
        fontSize:20,

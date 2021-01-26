@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View,BackHandler,Platform, Text,StyleSheet, TextInput, ScrollView,Image, TouchableNativeFeedback, ActivityIndicator,TouchableOpacity} from 'react-native';
+import {View,BackHandler,SafeAreaView,Platform, Text,StyleSheet, TextInput, ScrollView,Image, TouchableNativeFeedback, ActivityIndicator,TouchableOpacity} from 'react-native';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { CheckBox,Card } from 'react-native-elements';
@@ -120,6 +120,7 @@ class PaymentScreen extends React.Component {
     render(){
         return(
            <ScrollView showsVerticalScrollIndicator = {false} style={styles.container}>
+               <SafeAreaView>
                <View style={{flexDirection:'row',marginTop:30}}>
                <IonIcon onPress = {()=>this.props.navigation.goBack()} name="ios-arrow-back" size={26} color="#000000" style={{width:'35%'}}></IonIcon>
                <Text style={{width:'65%',color:'#000000',fontSize:15,fontFamily:'Montserrat-SemiBold'}}>Payment</Text>
@@ -224,6 +225,7 @@ class PaymentScreen extends React.Component {
                <View>
                            
                </View>
+               </SafeAreaView>
            </ScrollView>
         );
     }

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View, Image, StyleSheet, ScrollView, TextInput, TouchableOpacity} from 'react-native';
+import {Text, SafeAreaView, View, Image, StyleSheet, ScrollView, TextInput, TouchableOpacity} from 'react-native';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import {connect}  from 'react-redux';
 import {details} from '../action/fetch';
@@ -103,6 +103,7 @@ class SearchScreen extends React.Component {
     render(){
         return (
            <ScrollView showsVerticalScrollIndicator = {false} style={styles.container}>
+                <SafeAreaView>
                  <View style={{flex:1,alignSelf:'center'}}>
                      
                      {
@@ -174,6 +175,7 @@ class SearchScreen extends React.Component {
                      </View>
                      
                  </View>
+                 </SafeAreaView> 
            </ScrollView>
         );
     }

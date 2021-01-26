@@ -1,6 +1,6 @@
 import React,{ Component } from 'react';
 
-import {View, Text, ScrollView, Image,StyleSheet, TouchableOpacity} from 'react-native';
+import {View,SafeAreaView, Text, ScrollView, Image,StyleSheet, TouchableOpacity} from 'react-native';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import {connect} from 'react-redux';
 import cart from './cart';
@@ -36,6 +36,7 @@ class TipScreen extends React.Component {
     render(){
         return (
             <ScrollView style={styles.container}>
+                <SafeAreaView>
                 <View>
                     <View style={{backgroundColor:'#7dd148',padding:15}}>
                          <View style={{flexDirection:'row',padding:10,marginBottom:20}}>
@@ -72,6 +73,7 @@ class TipScreen extends React.Component {
                  </View>
                     
                 </View>
+                </SafeAreaView>
             </ScrollView>
         )
     }

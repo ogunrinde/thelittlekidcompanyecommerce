@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, Text, ScrollView, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
+import {View, Text, ScrollView, SafeAreaView, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
 import { CheckBox,Card } from 'react-native-elements'
 import {search} from '../action/fetch';
 import {connect } from 'react-redux';
@@ -31,6 +31,7 @@ class CategoryScreen extends React.Component {
     render(){
         return(
            <ScrollView showsVerticalScrollIndicator = {false} style={styles.container}>
+                <SafeAreaView>
                  <View style={{flex:1,alignSelf:'center'}}>
                      <Text style={{marginTop:20,fontFamily:'Montserrat-Bold',fontSize:15}}>Categories</Text>
                  </View>
@@ -112,6 +113,7 @@ class CategoryScreen extends React.Component {
                      
                      </View>
                  </View>
+                 </SafeAreaView> 
            </ScrollView>
         );
     }

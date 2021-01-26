@@ -1,6 +1,6 @@
 import React,{ Component } from 'react';
 
-import {View, Text, ScrollView, Image,StyleSheet} from 'react-native';
+import {View,SafeAreaView, Text, ScrollView, Image,StyleSheet} from 'react-native';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import Octicons from 'react-native-vector-icons/Octicons';
 import {Card} from 'react-native-elements';
@@ -35,6 +35,7 @@ class TrackingScreen extends React.Component {
     render(){
         return (
             <ScrollView style={styles.container}>
+                <SafeAreaView>
                 <View>
                     <View style={{backgroundColor:'#000000',padding:5}}>
                          <View style={{flexDirection:'row',padding:10,marginBottom:20}}>
@@ -130,6 +131,7 @@ class TrackingScreen extends React.Component {
                     
                     
                 </View>
+                </SafeAreaView> 
             </ScrollView>
         )
     }

@@ -31,7 +31,7 @@ class OnboardthreeScreen extends React.Component {
                     
                </View>
                <View style={{flex:1,justifyContent:'flex-end'}}>
-                    <TouchableOpacity onPress = {() => {this.props.navigation.navigate('welcome')}} style={{width:'70%',alignSelf:'center',backgroundColor:'#EC5198',borderColor:'#EC5198',borderWidth:1,padding:10,borderRadius:5,borderRadius:20}}>
+                    <TouchableOpacity onPress = {() => {this.props.navigation.navigate('home')}} style={{width:'70%',alignSelf:'center',backgroundColor:'#EC5198',borderColor:'#EC5198',borderWidth:1,padding:10,borderRadius:5,borderRadius:20}}>
                        <Text style={{textAlign:'center',color:'#fff',fontFamily:'Montserrat-Bold',fontSize:15}}>Get Started</Text>
                     </TouchableOpacity>
                         
